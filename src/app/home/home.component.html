@@ -1,0 +1,41 @@
+<h1 style="margin: 20px 20px">TO DO LIST D-App</h1>
+<div class="example-loading-shade" *ngIf="isLoadingResults">
+    <mat-spinner *ngIf="isLoadingResults"></mat-spinner>
+</div>
+<form [formGroup]="todoForm" (ngSubmit)="onFormSubmit()">
+    <mat-form-field class="example-full-width">
+        <input matInput placeholder="NewTodo" formControlName="todo" [errorStateMatcher]="matcher" />
+        <mat-error>
+            <span *ngIf="!todoForm.get('todo')?.valid && todoForm.get('todo')?.touched">Please enter TODO</span>
+        </mat-error>
+    </mat-form-field>
+    <div class="button-row">
+        <button type="submit" [disabled]="!todoForm.valid" mat-flat-button color="primary">
+            <mat-icon>save</mat-icon>
+        </button>
+    </div>
+</form>
+<div class="row text-center" *ngFor="let todo of todoList; let i = index">
+    <mat-card>
+        <div *ngIf="isWannaEdit != i">
+            {{todo}}
+            <button (click)="wannaEdit(i)">Edit</button>
+            <button (click)="onDeleteSubmit(i)">Delete</button>
+        </div>
+        <div *ngIf="isWannaEdit == i">
+            <form [formGroup]="editForm" (ngSubmit)="onEditSubmit()">
+                <mat-form-field class="example-full-width">
+                    <input matInput placeholder="EditTodo" formControlName="todo" [errorStateMatcher]="matcher" />
+                    <mat-error>
+                        <span *ngIf="!editForm.get('todo')?.valid && editForm.get('todo')?.touched">Please enter TODO</span>
+                    </mat-error>
+                </mat-form-field>
+                <div class="button-row">
+                    <button type="submit" [disabled]="!editForm.valid" mat-flat-button color="primary">
+                        <mat-icon>save</mat-icon>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </mat-card>
+</div>
