@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "concurrently \"node serverDapp.js\" \"node dist/todolist-dapp/server/main.js\"",
+    "start": "npm run serve:ssr",
+    "local": "concurrently \"node serverDapp.js\" \"node dist/todolist-dapp/server/main.js\"",
     "build": "npm run build:ssr",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",

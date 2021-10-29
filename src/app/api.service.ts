@@ -5,7 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 
 const port = 1210;
-const apiUrl = `http://localhost:${port}/api/todos`;
+const apiUrl = `https://rinkeby-backend.herokuapp.com`;
 
 @Injectable({
   providedIn: 'root'
